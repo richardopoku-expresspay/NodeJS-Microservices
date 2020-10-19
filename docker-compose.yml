@@ -1,0 +1,35 @@
+version: '3'
+services: 
+    listings:
+        build: "./listings"
+        depends_on: 
+            - listings_db
+        volumes:
+            - ./listings:/opt/app
+        environment: 
+            - DB_URI="mysql://root:password@listings_db/db?charset=UTF8"
+
+    listings_db:
+        environment: 
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=db
+        image: mysql:5.7.20
+        ports: 
+            - 7200:3306
+            
+    users:
+        build: "./users"
+        depends_on: 
+            - users_db
+        volumes:
+            - ./users:/opt/app
+        environment: 
+            - DB_URI="mysql://root:password@listings_db/db?charset=UTF8"
+
+    users_db:
+        environment: 
+            - MYSQL_ROOT_PASSWORD=password
+            - MYSQL_DATABASE=db
+        image: mysql:5.7.20
+        ports: 
+            - 7201:3306
