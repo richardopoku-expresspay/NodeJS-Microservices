@@ -7,7 +7,7 @@ services:
         volumes:
             - ./listings:/opt/app
         environment: 
-            - DB_URI="mysql://root:password@listings_db/db?charset=UTF8"
+            - DB_URI=mysql://root:password@listings_db/db?charset=UTF8
 
     listings_db:
         environment: 
@@ -16,7 +16,7 @@ services:
         image: mysql:5.7.20
         ports: 
             - 7200:3306
-            
+
     users:
         build: "./users"
         depends_on: 
@@ -24,7 +24,7 @@ services:
         volumes:
             - ./users:/opt/app
         environment: 
-            - DB_URI="mysql://root:password@listings_db/db?charset=UTF8"
+            - DB_URI=mysql://root:password@listings_db/db?charset=UTF8
 
     users_db:
         environment: 
