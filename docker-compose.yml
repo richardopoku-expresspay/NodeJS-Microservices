@@ -6,6 +6,8 @@ services:
             - listings_db
         volumes:
             - ./listings:/opt/app
+        ports: 
+            - 7100:7100
         environment: 
             - DB_URI=mysql://root:password@listings_db/db?charset=UTF8
 
@@ -23,6 +25,8 @@ services:
             - users_db
         volumes:
             - ./users:/opt/app
+        ports: 
+            - 7101:7101
         environment: 
             - DB_URI=mysql://root:password@listings_db/db?charset=UTF8
 
